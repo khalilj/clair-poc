@@ -1,0 +1,4 @@
+clairctl:
+  ip: 10.129.66.228
+  port: 6065
+  interface: br-5ae2491b4bb1
