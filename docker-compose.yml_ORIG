@@ -9,15 +9,15 @@ services:
 
   clair:
     container_name: clair_clair
-    image: quay.io/coreos/clair:latest
+    image: quay.io/coreos/clair-git:latest
     restart: unless-stopped
     depends_on:
       - postgres
     ports:
-      - "6060-6065:6060-6065"
+      - "6060-6061:6060-6061"
     links:
       - postgres
     volumes:
       - /tmp:/tmp
-      - ./:/config
+      - ./clair_config:/config
     command: [-config, /config/config.yaml]
