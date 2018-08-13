@@ -1,0 +1,10 @@
+docker run -d -v $PWD/postgres-data:/var/lib/postgresql/data --name db postgres:latest
+
+docker run -p 6060:6060 --link db:postgres -d --name clair -v $PWD:/config quay.io/coreos/clair:v2.0.4 -config /config/config.yaml
+
+./clairctl analyze  blazemeter/selenium_image:latest -l --config ./clairctl.yml
+./clair-scanner --clair="http://127.0.0.1:6060" --ip="10.129.66.228" --all blazemeter/selenium_image:latest
+
+https://github.com/arminc/clair-local-scan
+https://github.com/jgsqware/clairctl 
+
